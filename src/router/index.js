@@ -15,22 +15,28 @@ Vue.use(Router)
 // If using Babel, `import()` can be supported via
 // babel-plugin-syntax-dynamic-import.
 
-const createListView = name => () =>
-  System.import('../views/CreateListView').then(m => m.createListView(name))
-const ItemView = () => System.import('../views/ItemView.vue')
-const UserView = () => System.import('../views/UserView.vue')
+// const createListView = name => () =>
+    // System.import('../views/CreateListView').then(m => m.createListView(name))
+    // const ItemView = () => System.import('../views/ItemView.vue')
+const Index = () => System.import('../views/Index.vue')
 
-export default new Router({
-  mode: 'history',
-  scrollBehavior: () => ({ y: 0 }),
-  routes: [
-    { path: '/top/:page(\\d+)?', component: createListView('top') },
-    { path: '/new/:page(\\d+)?', component: createListView('new') },
-    { path: '/show/:page(\\d+)?', component: createListView('show') },
-    { path: '/ask/:page(\\d+)?', component: createListView('ask') },
-    { path: '/job/:page(\\d+)?', component: createListView('job') },
-    { path: '/item/:id(\\d+)', component: ItemView },
-    { path: '/user/:id', component: UserView },
-    { path: '/', redirect: '/top' }
-  ]
-})
+    export default new Router({
+        mode: 'history',
+        scrollBehavior: () => ({
+            y: 0
+        }),
+        routes: [
+            {
+                path: '*',
+                component: Index
+            }
+            // { path: '/top/:page(\\d+)?', component: createListView('top') },
+            // { path: '/new/:page(\\d+)?', component: createListView('new') },
+            // { path: '/show/:page(\\d+)?', component: createListView('show') },
+            // { path: '/ask/:page(\\d+)?', component: createListView('ask') },
+            // { path: '/job/:page(\\d+)?', component: createListView('job') },
+            // { path: '/item/:id(\\d+)', component: ItemView },
+            // { path: '/user/:id', component: UserView },
+            // { path: '/', redirect: '/top' }
+        ]
+    })

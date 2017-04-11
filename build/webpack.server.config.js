@@ -21,7 +21,7 @@ module.exports = merge(base, {
   },
   resolve: {
     alias: {
-      'create-api': './create-api-server.js'
+    //   'create-api': './create-api-server.js'
     }
   },
   // 详细用法请参考：https://github.com/zhengweikeng/blog/issues/10

@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
+    "axios": "^0.16.1",
     "buble": "^0.15.2",
     "buble-loader": "^0.4.1",
     "css-loader": "^0.27.3",
