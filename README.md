@@ -21,4 +21,4 @@ npm start
 
 ## 特性
 
-> + 使用`axios`结合`vuex`做服务端渲染
+> + 使用`axios`结合`vuex`做服务端渲染（可能需要对`axios`于客户端和服务端做差异性处理，服务端的`axios`没有相关浏览器行为，如携带cookie）

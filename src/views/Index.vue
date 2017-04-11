@@ -1,21 +1,41 @@
 <template lang="html">
-<div>首页</div>
+<div>
+    <ul>
+        <li v-for="item in baseData">
+            {{item.phone}}
+        </li>
+    </ul>
+</div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
+// import { mapGetters } from "vuex";
 export default {
+    name: "index-view"
     data() {
         return {}
     },
-    computed: {},
-    mounted() {
-        axios.get("http://platenogroup.com")
-            .then((res) => {
-                console.log(res);
-            });
+    computed: {
+        baseData() {
+            return this.$store.getters.baseData;
+        }
+        // ...mapGetters([
+        //     "baseData"
+        // ])
     },
-    methods: {},
+    mounted() {
+        // this.requestData();
+    },
+    // 服务端渲染，预加载数据，必须要返回promise对象
+    preFetch(store) {
+        return store.dispatch("requestData");
+    },
+    methods: {
+        ...mapActions({
+            request: "requestData"
+        })
+    },
     components: {}
 }
 </script>
