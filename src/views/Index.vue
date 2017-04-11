@@ -3,12 +3,18 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     data() {
         return {}
     },
     computed: {},
-    mounted() {},
+    mounted() {
+        axios.get("http://platenogroup.com")
+            .then((res) => {
+                console.log(res);
+            });
+    },
     methods: {},
     components: {}
 }
