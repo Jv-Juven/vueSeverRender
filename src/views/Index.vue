@@ -10,31 +10,31 @@
 
 <script>
 import { mapActions } from "vuex";
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
-    name: "index-view"
+    name: "index-view",
     data() {
         return {}
     },
     computed: {
-        baseData() {
-            return this.$store.getters.baseData;
-        }
-        // ...mapGetters([
-        //     "baseData"
-        // ])
+        ...mapGetters([
+            "baseData"
+        ])
+        // baseData() {
+        //     return this.$store.getters.baseData;
+        // }
     },
     mounted() {
-        // this.requestData();
+        this.requestData();
     },
     // 服务端渲染，预加载数据，必须要返回promise对象
-    preFetch(store) {
-        return store.dispatch("requestData");
-    },
+    // preFetch(store) {
+    //     return store.dispatch("requestData");
+    // },
     methods: {
-        ...mapActions({
-            request: "requestData"
-        })
+        ...mapActions([
+            "requestData"
+        ])
     },
     components: {}
 }

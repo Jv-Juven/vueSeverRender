@@ -19,11 +19,11 @@ module.exports = merge(base, {
     // 代码暴露方式为：module.exports = xxx
     libraryTarget: 'commonjs2'
   },
-  resolve: {
-    alias: {
-    //   'create-api': './create-api-server.js'
-    }
-  },
+  // resolve: {
+  //   alias: {
+  //     'create-api': './create-api-server.js'
+  //   }
+  // },
   // 详细用法请参考：https://github.com/zhengweikeng/blog/issues/10
   externals: Object.keys(require('../package.json').dependencies),
   plugins: [
