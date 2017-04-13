@@ -17,6 +17,10 @@ const config = merge(base, {
       'process.env.VUE_ENV': '"client"'
     }),
     // extract vendor chunks for better caching
+    // 为了更好地缓存所有模块的公共代码部分，将公共代码部分提取出来（在之前为运行时代码runtime），但是提取出来的
+    // 公共代码名字（后缀哈希值）会随着每次打包（即使改的不是公共代码）而改变。
+    // 参考：https://www.zhihu.com/question/31352596
+    // 将webpack的runtime代码抽取为manifest（公共代码清单），避免公共代码（vendor chunk）的哈希值在每次编译代码时变化
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest']
     }),
