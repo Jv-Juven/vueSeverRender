@@ -9,6 +9,8 @@ module.exports = function setupDevServer (app, cb) {
   let template
 
   // modify client config to work with hot middleware
+  // webpack-hot-middleware的配置包括：webpack的配置和nodejs服务器的代码设置
+  // 详细介绍请参考：https://www.npmjs.com/package/webpack-hot-middleware
   clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
   clientConfig.output.filename = '[name].js'
   clientConfig.plugins.push(
@@ -40,7 +42,18 @@ module.exports = function setupDevServer (app, cb) {
   // watch and update server renderer
   const serverCompiler = webpack(serverConfig)
   const mfs = new MFS()
+  // 通常webpack将编译之后的块（chunks）写进磁盘。如果你想webpack将这些块放到不同的文件
+  // 系统中（比如：内存，webDAV，等），你可以设置（webpack的）属性outputFileSystem值为
+  // 如下：
   serverCompiler.outputFileSystem = mfs
+  // webpack监听方法watch，将会在监听到所监听的变化之后立即重新运行一遍代码，返回一个Wathing的实例。
+  // 具体配置请查看：https://webpack.js.org/api/node/#watching
+  // stat 为：watch触发后，编译代码进程信息的对象，包含几个信息：
+  // • Errors and Warnings （如果有）
+  // • Timings
+  // • Module and Chunk information
+  // • etc（其他）.
+  // 参考：https://webpack.js.org/api/node/#stats-object
   serverCompiler.watch({}, (err, stats) => {
     if (err) throw err
     stats = stats.toJson()
